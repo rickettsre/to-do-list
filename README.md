@@ -1,6 +1,4 @@
-100 Days of Code - Day 89
-===========================
-
+# 100 Days of Code - Day 89
 
 Today, you are going to build a todo list website. This is a right of passage for any developer.
 
@@ -10,6 +8,8 @@ Here is a website for inspiration:
 
 https://flask.io/new
 
-
 Top Secret: Most developer jobs will be interviewed by someone who is a manager. The top piece of technology a manager uses is a task-manager like Trello or Jira. If you can build a good task-manager, you will definitely impress your future interviewer!
 
+flask flask_sqlalchemy
+
+bootstrap flask-wtf
