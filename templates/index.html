@@ -29,22 +29,28 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Task Number</th>
           <th>Task Description</th>
           <th>Complete</th>
-        </tr>
+          <th>Edit</th>
+          <th>Delete</th>
+          </tr>
       </thead>
       <tbody>
         {% for task in task_data %}
         <tr>
-          <td>{{task.id}}</td>
           <td>{{task.title}}</td>
-          {% if task.complete %}
+          {% if task.complete == True %}
           <td>Yes</td>
           {% else %}
           <td>No</td>
           {% endif %}
-        </tr>
+          <td>
+      <a href="{{ url_for('edit', task_id=task.id) }}" class="btn btn-primary btn-sm">Edit</a>
+    </td> 
+    <td>
+      <a href="{{ url_for('delete', task_id=task.id) }}" class="btn btn-primary btn-sm">Delete</a>
+    </td> 
+  </tr>
         {% endfor %}
       </tbody>
     </table>

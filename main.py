@@ -15,8 +15,12 @@ Bootstrap(app)
 
 class TaskAdd(FlaskForm):
     title = StringField('Your task description', validators=[DataRequired()])
-    complete = StringField('Complete?', validators=[DataRequired()])
     submit = SubmitField('Add Task')
+
+class TaskEdit(FlaskForm):
+    title = StringField('Your task description', validators=[DataRequired()])
+    complete = StringField('Complete?', validators=[DataRequired()])
+    submit = SubmitField('Submit Changes')
 
 db = SQLAlchemy(app)
 
@@ -41,7 +45,27 @@ def add_task():
         db.session.add(task)
         db.session.commit()
         return redirect(url_for('home'))
-    return render_template("add.html", form=form)  
+    return render_template("add.html", form=form)
+
+@app.route("/edit/<int:task_id>", methods=['GET', 'POST'])
+def edit(task_id):
+    task_to_edit = Task.query.get(task_id)
+    form = TaskEdit(obj=task_to_edit)
+    if form.validate_on_submit():
+        task_to_edit.title = form.title.data
+        task_to_edit.complete = form.complete.data
+        task_to_edit.complete = form.complete.data.lower() in ['true', '1', 'yes', 'on']
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template("edit.html", form=form, task=task_to_edit)
+
+
+@app.route("/delete/<int:task_id>", methods=['GET', 'POST'])
+def delete(task_id):
+    task_to_delete = Task.query.get(task_id)
+    db.session.delete(task_to_delete)
+    db.session.commit()
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':
