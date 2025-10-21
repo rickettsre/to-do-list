@@ -12,4 +12,15 @@ Top Secret: Most developer jobs will be interviewed by someone who is a manager.
 
 flask flask_sqlalchemy
 
+
 bootstrap flask-wtf
+
+Layout -->
+
+DUE DATE ---------------- PRIORITY ------ WHAT --------- IN PROGRESS----- DONE----------
+
+
+Due date calendar drop down
+Priority RAG High Red Medium Amber Green Low 
+In progress and done check boxes + have ADD and DELETE BUTTON
+Sort/ Filter?
